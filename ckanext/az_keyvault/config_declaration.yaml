@@ -1,0 +1,19 @@
+version: 1
+groups:
+  - annotation: ckanext-az-keyvault settings
+    options:
+      - key: ckanext.az_keyvault.vault_name
+        description: |
+            The name of the Azure Key Vault to pull stored values from.
+        required: true
+      - key: ckanext.az_keyvault.period_char
+        default: |
+          #
+        example: ^
+        description: |
+            Periods are not allowed in Azure Key Vault key names, the plugin
+            will replace this character with periods when accessing the Key Vault.
+        validators: ignore_missing
+        required: false
+
+
