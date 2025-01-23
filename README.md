@@ -2,7 +2,7 @@
 
 # ckanext-az-keyvault
 
-CKAN Extentsion for Azure Key Vault itegration. This plugin provides the ability to store CKAN config option values in an Azure Key Vault.
+CKAN Extentsion for Azure Key Vault integration. This plugin provides the ability to store CKAN config option values in an Azure Key Vault.
 
 
 ## Requirements
@@ -68,7 +68,18 @@ To install ckanext-az-keyvault:
 
 To have a CKAN config options stored in the Key Vault, create the key value pair in the Azure Key Vault with the name of the CKAN config option the same, with the following caveat: periods are not allowed in Azure Key Vault key names. Thus, replace any periods in the CKAN config option name with `#` (controllable with `ckanext.az_keyvault.period_char`, see above).
 
-In the CKAN config file, set the value to the stored key to `AZURE_KEY_VAULTED`, this plugin will then attempt to go fetch the stored value from the Azure Key Vault.
+For example `ckan.datastore.write_url` would be saved as `ckan#datastore#write_url` in Azure Key Vault.
+
+In the CKAN config file, set the value to the stored key to `AZURE_KEY_VAULTED`, this plugin will then attempt to go fetch the stored value from the Azure Key Vault. Example:
+
+```
+ckan.datastore.write_url = AZURE_KEY_VAULTED
+ckan.datastore.read_url = AZURE_KEY_VAULTED
+
+ckanext.cloudstorage.driver_options = AZURE_KEY_VAULTED
+
+ckanext.gcnotify.secret_key = AZURE_KEY_VAULTED
+```
 
 
 ## MSI Configuration
